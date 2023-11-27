@@ -3,7 +3,7 @@
 {% block content %}
 
   <h1>TODO list</h1>
-  <a href="{% url 'list:task-create' %}">Add Task</a>
+  <a href="{% url 'list:task-create' %}" class="btn btn-primary float-right">Add Task</a>
   {% for task in task_list %}
     <ul>
       <strong>Content: </strong>{{ task.content }}<br>

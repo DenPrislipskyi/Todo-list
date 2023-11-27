@@ -3,7 +3,7 @@
 {% block content %}
 
   <h1>Tags:</h1>
-  <h4><a href="{% url 'list:tag-create' %}">Add</a></h4>
+  <h4><a href="{% url 'list:tag-create' %}" class="btn btn-primary float-right">Add</a></h4>
 
   <table class="table">
     <thead>
@@ -16,7 +16,7 @@
   {% for tag in tag_list %}
     <tr>
       <th>{{ tag.name }}</th>
-      <th><a href="{% url 'list:tag-update' pk=tag.id %}">Update</a></th>
+      <th><a href="{% url 'list:tag-update' pk=tag.id %}" >Update</a></th>
       <th><a href="{% url 'list:tag-delete' pk=tag.id %}">Delete</a></th>
     </tr>
   {% endfor %}
