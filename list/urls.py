@@ -7,7 +7,8 @@ from list.views import (TaskListView,
                         TagListView,
                         TagCreateView,
                         TagUpdateView,
-                        TagDeleteView)
+                        TagDeleteView,
+                        change_is_done)
 
 urlpatterns = [
     path("", TaskListView.as_view(), name="task-list"),
@@ -18,6 +19,7 @@ urlpatterns = [
     path("tags/create/", TagCreateView.as_view(), name="tag-create"),
     path("tags/<int:pk>/update/", TagUpdateView.as_view(), name="tag-update"),
     path("tags/<int:pk>/delete/", TagDeleteView.as_view(), name="tag-delete"),
+    path("tags/<int:pk>/change-is-done/", change_is_done, name="change-is-done"),
 ]
 
 app_name = "list"

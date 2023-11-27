@@ -3,8 +3,8 @@
 
 {% block content %}
 
-<h1>{{ object|yesno:"Update,Create" }} Tag</h1>
-    <form action="" method="post">
+<h1>{{ object|yesno:"Update,Create" }} Task</h1>
+    <form action="" method="post" novalidate>
       {% csrf_token %}
       {{ form|crispy }}
       <input type="submit" value="save">
