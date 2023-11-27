@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  <h1>TODO list</h1>
+  <a href="{% url 'list:task-create' %}" class="btn btn-primary float-right">Add Task</a>
+  {% for task in task_list %}
+    <p>
+      <strong>Content: </strong>{{ task.content }}<br>
+      <strong>Created: </strong>{{ task.created }}<br>
+      {% if task.deadline %}
+        <strong>Deadline: </strong>{{ task.deadline }}<br>
+      {% endif %}
+      <strong>Is_done: </strong>
+      {% if task.is_done %}
+        <div style="color: green;">Done</div>
+      {% else %}
+        <div style="color: red;">Not Done</div>
+      {% endif %}<br>
+      {% if task.is_done %}
+        <form action="{% url 'list:change-is-done' pk=task.id %}" method="POST" style="display: inline;">
+            {% csrf_token %}
+            <input type="hidden" name="status" value="undo">
+            <input type="submit" value="Undo">
+        </form>
+      {% else %}
+        <form action="{% url 'list:change-is-done' pk=task.id %}" method="POST" style="display: inline;">
+            {% csrf_token %}
+            <input type="hidden" name="status" value="complete">
+            <input type="submit" value="Complete">
+        </form>
+      {% endif %}
+        <h3>Tags:</h3>
+       {% for tag in task.tag.all %}
+         <li>{{ tag.name }}</li>
+       {% endfor %}<br>
+      <a href="{% url 'list:task-update' pk=task.id %}">Update</a>
+      <a href="{% url 'list:task-delete' pk=task.id %}">Delete</a>
+    <hr>
+    </ul>
+
+  {% endfor %}
+
+{% endblock %}
